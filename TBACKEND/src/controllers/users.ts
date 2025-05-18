@@ -16,8 +16,8 @@ const normalizeUser = (user: UserDocument) => {
     };
 }
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
-    try{
+export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
         const newUser = new userModel({
             username: req.body.name,
             email: req.body.email,
@@ -26,8 +26,27 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
         const savedUser = await newUser.save();
         res.send(normalizeUser(savedUser));
         console.log("User created", savedUser);
-    }catch (err) {
+    } catch (err) {
         next(err);
     }
+};
 
+import bcrypt from "bcrypt"; // Add this import at the top of the file
+
+export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const user = await userModel.findOne({ email: req.body.email }).select('+password');
+        if (!user) {
+            res.status(401).json({ message: 'Invalid email or password' });
+            return;
+        }
+        const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+        if (!isPasswordValid) {
+            res.status(401).json({ message: 'Invalid email or password' });
+            return;
+        }
+        res.send(normalizeUser(user));
+    } catch (err) {
+        next(err);
+    }
 };
