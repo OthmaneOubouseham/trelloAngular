@@ -32,6 +32,7 @@ export const register = async (req: Request, res: Response, next: NextFunction):
 };
 
 import bcrypt from "bcrypt"; // Add this import at the top of the file
+import { ExpressRequestInterface } from "../types/expressRequest.interface";
 
 export const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
@@ -49,4 +50,11 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     } catch (err) {
         next(err);
     }
+};
+export const currentUser = async (req: ExpressRequestInterface, res: Response, next: NextFunction): Promise<void> => {
+    if(!req.user) {
+        res.status(401).json({ message: 'Unauthorized' });
+        return;
+        }
+    res.send(normalizeUser(req.user));
 };

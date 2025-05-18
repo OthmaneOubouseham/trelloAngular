@@ -5,8 +5,10 @@ export interface User {
     username: string;
     password: string;
     createdAt: Date;
-    }
-export interface UserDocument extends User, Document {
+    // Add other fields if necessary
+}
+
+export interface UserDocument extends Document, User {
     comparePassword: (password: string) => Promise<boolean>;
 }
 

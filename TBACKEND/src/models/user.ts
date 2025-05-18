@@ -1,4 +1,4 @@
-import {Schema} from 'mongoose';
+import {Schema, Model} from 'mongoose';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
@@ -46,6 +46,10 @@ userSchema.pre<UserDocument>('save', async function (next) {
 userSchema.methods.comparePassword = async function (password: string) {
     return await bcrypt.compare(password, this.password);
 };
-export default mongoose.model('User', userSchema);
+
+// Explicitly type the model
+const UserModel: Model<UserDocument> = mongoose.model<UserDocument>('User', userSchema);
+
+export default UserModel;
 
 
