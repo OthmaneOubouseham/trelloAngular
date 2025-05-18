@@ -14,9 +14,9 @@ const userSchema = new Schema<UserDocument>({
         validate: [validator.isEmail, 'Please provide a valid email'],
         createIndexes: {unique: true}
     },
-    name: {
+    username: {
         type: String,
-        required: [true, 'Username is required']
+        // required: [true, 'Username is required']
     },
     password: {
         type: String,

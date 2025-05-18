@@ -3,6 +3,8 @@ import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
+import * as userController from './controllers/users';
+import bodyParser from 'body-parser';
 
 
 const app = express();
@@ -13,9 +15,16 @@ const io = new Server(httpServer, {
     methods: ['GET', 'POST']
   }
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.post('/api/users', userController.register);
+
 io.on('connection', (socket) => {
   console.log('a user connected');
 });

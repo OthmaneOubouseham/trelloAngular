@@ -6,6 +6,9 @@
     "esModuleInterop": true, // Enable compatibility with CommonJS and ES modules
     "skipLibCheck": true, // Skip type checking of declaration files
     "outDir": "./dist", // Redirect output structure to the 'dist' folder
-    "rootDir": "./src" // Specify the root directory of input files
+    "rootDir": "./src", // Specify the root directory of input files
+    "moduleResolution": "node", // Ensure Node.js module resolution
+    "resolveJsonModule": true, // Allow importing JSON files
+    "allowJs": true // Allow JavaScript files if needed
   }
 }
