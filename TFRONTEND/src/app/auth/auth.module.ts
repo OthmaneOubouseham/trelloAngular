@@ -17,6 +17,10 @@ const routes: Routes = [
     declarations: [
       RegisterComponent
     ],
-    imports: [RouterModule.forChild(routes)]
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      RouterModule.forChild(routes)
+    ]
 })
 export class AuthModule {}
