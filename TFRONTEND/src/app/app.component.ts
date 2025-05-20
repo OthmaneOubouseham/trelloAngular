@@ -21,6 +21,16 @@ export class AppComponent implements OnInit {
         this.authService.setCurrentUser(null);
       }
   });
+  this.authService.currentUser$.subscribe({
+    next: (currentUser) => {
+      console.log('Current user from observable:', currentUser);
+    }
+  });
+  this.authService.isLogged$.subscribe({
+    next: (isLogged) => {
+      console.log('Is logged:', isLogged);
+    }
+  });
+  
   }
-  title = 'TFRONTEND';
 }

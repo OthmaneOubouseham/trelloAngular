@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, map, filter } from 'rxjs';
 import { CurrentUserInterface } from '../types/currentUser.interface';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequestInterface } from '../types/registerrequest.interface';
@@ -8,6 +8,10 @@ import { LoginRequestInterface } from '../types/loginRegister.interface';
 @Injectable()
 export class AuthService {
     currentUser$ = new BehaviorSubject<CurrentUserInterface | null>(null);
+
+    isLogged$ = this.currentUser$.pipe(filter((currentUser) => currentUser !== undefined),
+        map(Boolean)
+    );
 
 
     constructor(private http: HttpClient) {}
