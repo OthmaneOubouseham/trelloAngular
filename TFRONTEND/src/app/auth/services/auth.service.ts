@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { CurrentUserInterface } from '../types/currentUser.interface';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequestInterface } from '../types/registerrequest.interface';
+import { LoginRequestInterface } from '../types/loginRegister.interface';
 
 @Injectable()
 export class AuthService {
@@ -23,6 +24,11 @@ export class AuthService {
     register(registerRequet: RegisterRequestInterface): Observable<CurrentUserInterface> {
         const url = 'http://localhost:4001/api/users';
         return this.http.post<CurrentUserInterface>(url, registerRequet);
+
+    }
+    login(loginRequest: LoginRequestInterface): Observable<CurrentUserInterface> {
+        const url = 'http://localhost:4001/api/users/login';
+        return this.http.post<CurrentUserInterface>(url, loginRequest);
 
     }
 
