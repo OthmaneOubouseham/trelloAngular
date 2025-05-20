@@ -1,1 +1,0 @@
-export const config = "http://localhost:4001/api/";

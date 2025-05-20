@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { routes } from './app.routes';
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(routes), AppComponent],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
   providers: [],
-  // Removed the bootstrap array
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
