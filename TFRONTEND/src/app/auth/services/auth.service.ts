@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { CurrentUserInterface } from '../types/currentUser.interface';
 import { HttpClient } from '@angular/common/http';
+import { RegisterRequestInterface } from '../types/registerrequest.interface';
 
 @Injectable()
 export class AuthService {
@@ -19,4 +20,17 @@ export class AuthService {
         this.currentUser$.next(currentUser);
     }
 
+    register(registerRequet: RegisterRequestInterface): Observable<CurrentUserInterface> {
+        const url = 'http://localhost:4001/api/users';
+        return this.http.post<CurrentUserInterface>(url, registerRequet);
+
+    }
+
+    setToken(currentUser: CurrentUserInterface | null): void {
+        if (currentUser) {
+            localStorage.setItem('token', currentUser.token);
+        } else {
+            localStorage.removeItem('token');
+        }
+    }
  }
