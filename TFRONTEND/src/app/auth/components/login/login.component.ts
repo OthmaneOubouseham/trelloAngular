@@ -27,7 +27,7 @@ export class loginComponent {
         console.log('User logined successfully:', currentUser);
         this.authService.setCurrentUser(currentUser);
         this.authService.setToken(currentUser);
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/boards');
 
       },
       error: (error) => {
