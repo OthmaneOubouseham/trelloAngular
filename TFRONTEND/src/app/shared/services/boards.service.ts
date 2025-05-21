@@ -11,4 +11,10 @@ export class BoardsService {
     const url = 'http://localhost:4001/api/boards';
     return this.http.get<BoardInterface[]>(url);
   }
+
+  cretzeBoard(title: string): Observable<BoardInterface> {
+    const url = 'http://localhost:4001/api/boards';
+    return this.http.post<BoardInterface>(url, { title });
+  } 
+
 }

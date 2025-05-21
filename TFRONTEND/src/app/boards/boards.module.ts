@@ -4,6 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { BoardsComponent } from "./components/boards/boards.component";
 import { AuthGuard } from "../auth/services/authGuard.service";
 import { BoardsService } from "../shared/services/boards.service";
+import { InlineFormModule } from "../shared/modules/inlineForm/inlineForm.module";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
+        InlineFormModule
     ],
     declarations: [
         BoardsComponent,
