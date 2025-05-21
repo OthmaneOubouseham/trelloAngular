@@ -21,6 +21,13 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+mongoose.set('toJSON', {
+  virtuals: true,
+  transform: (_, converted) => {
+    delete converted._id;
+  }
+})
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
