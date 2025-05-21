@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardsService } from 'src/app/shared/services/boards.service';
 import { BoardInterface } from './../../../shared/types/boards.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'boards',
@@ -21,4 +22,7 @@ export class BoardsComponent implements OnInit {
       this.boards = [...this.boards, createdBoard];
     });
   }
+
+  
+
 }

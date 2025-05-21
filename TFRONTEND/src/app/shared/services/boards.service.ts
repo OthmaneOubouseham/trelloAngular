@@ -17,4 +17,9 @@ export class BoardsService {
     return this.http.post<BoardInterface>(url, { title });
   } 
 
+  getBoard(boardId: string): Observable<BoardInterface> {
+    const url ="http://localhost:4001/api/boards/" + boardId;
+    return this.http.get<BoardInterface>(url);
+  }
+
 }

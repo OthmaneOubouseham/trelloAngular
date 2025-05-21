@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/services/authinterceptor.service';
 import { BoardsModule } from './boards/boards.module';
+import { BoardModule } from './board/board.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { BoardsModule } from './boards/boards.module';
     AppRoutingModule,
     AuthModule,
     HttpClientModule,
-    BoardsModule
+    BoardsModule,
+    BoardModule
   ],
   providers: [
     {

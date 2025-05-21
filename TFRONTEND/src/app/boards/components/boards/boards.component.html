@@ -28,7 +28,7 @@
           (handleSubmit)="createBoard($event)"
         ></inline-form>
         <a
-          [routerLink]="['/boards', board.id]"
+          [routerLink]="['/board', board.id]"
           *ngFor="let board of boards"
           class="board-tile"
         >
