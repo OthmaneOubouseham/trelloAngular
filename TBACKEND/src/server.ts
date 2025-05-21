@@ -37,6 +37,7 @@ app.post('/api/users/login', userController.login);
 app.get('/api/users', authMiddleware, userController.currentUser);
 app.get('/api/boards', authMiddleware, boardController.getBoards);
 app.post('/api/boards', authMiddleware, boardController.createBoard);
+app.get('/api/boards/:boardId', authMiddleware, boardController.getBoard);
 
 io.on('connection', (socket) => {
   console.log('a user connected');
