@@ -4,6 +4,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import * as userController from './controllers/users';
+import * as boardController from './controllers/boards';
 import bodyParser from 'body-parser';
 import authMiddleware from './middlewares/auth';
 
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 app.post('/api/users', userController.register);
 app.post('/api/users/login', userController.login);
 app.get('/api/users', authMiddleware, userController.currentUser);
-
+app.get('/api/boards', authMiddleware, boardController.getBoards);
 
 io.on('connection', (socket) => {
   console.log('a user connected');

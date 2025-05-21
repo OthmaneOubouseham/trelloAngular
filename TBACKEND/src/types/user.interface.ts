@@ -5,7 +5,7 @@ export interface User {
     username: string;
     password: string;
     createdAt: Date;
-    // Add other fields if necessary
+    updatedAt: Date;
 }
 
 export interface UserDocument extends Document, User {
