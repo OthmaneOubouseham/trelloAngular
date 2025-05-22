@@ -4,6 +4,9 @@ import { BoardComponent } from "./components/board/board.component";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../auth/services/authGuard.service";
 import { BoardService } from "./services/board.service";
+import { ColumnsService } from "../shared/services/columns.service";
+// Update the path below to the correct relative location of topbar.module.ts
+import { TopbarModule } from "../shared/modules/topbar/topbar.module";
 
 const routes: Routes = [
     {
@@ -11,12 +14,16 @@ const routes: Routes = [
         component: BoardComponent,
         canActivate: [AuthGuard]
     }
-]
+];
 
 @NgModule({
-    imports: [CommonModule, RouterModule.forChild(routes)],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        TopbarModule // <-- ajoute ce module ici
+    ],
     declarations: [BoardComponent],
-    providers: [BoardService],
+    providers: [BoardService, ColumnsService],
 })
 
 export class BoardModule {}
