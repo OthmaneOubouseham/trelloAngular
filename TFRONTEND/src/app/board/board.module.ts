@@ -7,6 +7,7 @@ import { BoardService } from "./services/board.service";
 import { ColumnsService } from "../shared/services/columns.service";
 // Update the path below to the correct relative location of topbar.module.ts
 import { TopbarModule } from "../shared/modules/topbar/topbar.module";
+import { InlineFormModule } from "../shared/modules/inlineForm/inlineForm.module"; // adapte le chemin si besoin
 
 const routes: Routes = [
     {
@@ -20,7 +21,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        TopbarModule // <-- ajoute ce module ici
+        TopbarModule, // <-- ajoute ce module ici
+        InlineFormModule // <-- ajoute ce module ici
     ],
     declarations: [BoardComponent],
     providers: [BoardService, ColumnsService],

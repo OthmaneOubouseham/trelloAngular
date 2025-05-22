@@ -8,6 +8,7 @@ import { BoardInterface } from 'src/app/shared/types/boards.interface'
 import { ColumnInterface } from 'src/app/shared/types/column.interface';
 import { SocketEventsEnum } from 'src/app/shared/types/socketEvents.enum';
 import { BoardService } from '../../services/board.service';
+import { ColumnInputInterface } from 'src/app/shared/types/columnInput.interface';
 
 @Component({
   selector: 'board',
@@ -69,5 +70,15 @@ export class BoardComponent implements OnInit {
     this.columnsService.getColumns(this.boardId).subscribe((columns) => {
       this.boardService.setColumns(columns);
     });
+  }
+
+  createColumn(title: string): void {
+    console.log('create column', title);
+    const columnInput : ColumnInputInterface = {
+        title: title,
+        boardId: this.boardId,
+    };
+    this.columnsService.createColumn(columnInput);
+
   }
 }
