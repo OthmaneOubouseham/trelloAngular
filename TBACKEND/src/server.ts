@@ -52,6 +52,11 @@ io.on('connection', (socket) => {
     boardController.leaveBoard(io, socket, data);
     console.log('boardsJoin event received:', data);
   });
+  socket.on(SocketEventsEnum.columnsCreate, (data) => {
+    columnsController.createColumn(io, socket, data);
+    console.log('columnsCreate event received:', data);
+  });
+  
 });
 mongoose.connect('mongodb://localhost:27017/eltrello').then(() => {
     console.log('Connected to MongoDB');
