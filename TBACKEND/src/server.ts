@@ -5,6 +5,7 @@ import { DefaultEventsMap, Server, Socket } from 'socket.io';
 import mongoose from 'mongoose';
 import * as userController from './controllers/users';
 import * as boardController from './controllers/boards';
+import * as columnsController from './controllers/columns';
 import bodyParser from 'body-parser';
 import authMiddleware from './middlewares/auth';
 import { SocketEventsEnum } from './types/socketEvents.enum';
@@ -38,6 +39,9 @@ app.get('/api/users', authMiddleware, userController.currentUser);
 app.get('/api/boards', authMiddleware, boardController.getBoards);
 app.post('/api/boards', authMiddleware, boardController.createBoard);
 app.get('/api/boards/:boardId', authMiddleware, boardController.getBoard);
+app.get('/api/boards/:boardId/columns', authMiddleware, columnsController.getColumns);
+
+
 
 io.on('connection', (socket) => {
   socket.on(SocketEventsEnum.boardsJoin, (data) => {
