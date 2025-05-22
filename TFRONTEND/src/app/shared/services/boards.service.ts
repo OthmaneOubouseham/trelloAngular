@@ -5,6 +5,7 @@ import { BoardInterface } from '../types/boards.interface';
 
 @Injectable()
 export class BoardsService {
+  board$: Observable<BoardInterface> | null | undefined;
   constructor(private http: HttpClient) {}
 
   getBoards(): Observable<BoardInterface[]> {

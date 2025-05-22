@@ -1,12 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import { createServer } from 'http';
-import { Server } from 'socket.io';
+import { DefaultEventsMap, Server, Socket } from 'socket.io';
 import mongoose from 'mongoose';
 import * as userController from './controllers/users';
 import * as boardController from './controllers/boards';
 import bodyParser from 'body-parser';
 import authMiddleware from './middlewares/auth';
+import { SocketEventsEnum } from './types/socketEvents.enum';
 
 
 const app = express();
@@ -39,7 +40,14 @@ app.post('/api/boards', authMiddleware, boardController.createBoard);
 app.get('/api/boards/:boardId', authMiddleware, boardController.getBoard);
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  socket.on(SocketEventsEnum.boardsJoin, (data) => {
+    boardController.joinBoard(io, socket, data);
+    console.log('boardsJoin event received:', data);
+  });
+  socket.on(SocketEventsEnum.boardsLeave, (data) => {
+    boardController.leaveBoard(io, socket, data);
+    console.log('boardsJoin event received:', data);
+  });
 });
 mongoose.connect('mongodb://localhost:27017/eltrello').then(() => {
     console.log('Connected to MongoDB');

@@ -26,5 +26,13 @@ export class SocketService {
             this.socket.disconnect();
             this.socket = null;
         }
+
     }
+
+    emit(eventName: string, message: any): void {
+        if (this.socket) {
+            this.socket.emit(eventName, message);
+        }
+    }
+
 }
