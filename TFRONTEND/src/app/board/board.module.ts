@@ -21,8 +21,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        TopbarModule, // <-- ajoute ce module ici
-        InlineFormModule // <-- ajoute ce module ici
+        TopbarModule,
+        InlineFormModule 
     ],
     declarations: [BoardComponent],
     providers: [BoardService, ColumnsService],

@@ -39,7 +39,8 @@ app.get('/api/users', authMiddleware, userController.currentUser);
 app.get('/api/boards', authMiddleware, boardController.getBoards);
 app.post('/api/boards', authMiddleware, boardController.createBoard);
 app.get('/api/boards/:boardId', authMiddleware, boardController.getBoard);
-app.get('/api/boards/:boardId/columns', authMiddleware, columnsController.getColumns);
+app.get('/api/boards/:boardId/columns', authMiddleware, columnsController.getColumns as any);
+app.post('/api/boards/:boardId/columns', authMiddleware, columnsController.createColumns);
 
 
 

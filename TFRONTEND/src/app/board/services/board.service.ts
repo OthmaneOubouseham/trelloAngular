@@ -30,4 +30,8 @@ export class BoardService {
         this.columns$.next(columns);
         
     }
+    addColumn(column: ColumnInterface): void {
+  const updatedColumns = [...this.columns$.getValue(), column];
+  this.columns$.next(updatedColumns);
+}
 }

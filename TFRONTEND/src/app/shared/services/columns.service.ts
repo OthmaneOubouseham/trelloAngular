@@ -16,10 +16,12 @@ export class ColumnsService {
         const url = `http://localhost:4001/api/boards/${boardId}/columns`;
         return this.http.get<ColumnInterface[]>(url);
     }
-    createColumn(columnInput: ColumnInputInterface,): void {
-        this.socketService.emit(SocketEventsEnum.columnsCreate, columnInput);
-
-
+    createColumn(columnInput: ColumnInputInterface): void {
+    this.socketService.emit(SocketEventsEnum.columnsCreate, columnInput);
+  }
+  createBoard(boardId: string): Observable<ColumnInterface> {
+      const url = `http://localhost:4001/api/boards/${boardId}/columns`;
+      return this.http.post<ColumnInterface>(url, { boardId });
     }
 
 }
