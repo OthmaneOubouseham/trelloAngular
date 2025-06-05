@@ -59,15 +59,17 @@ io.on('connection', (socket) => {
   });
   
 });
-mongoose.connect('mongodb://localhost:27017/eltrello').then(() => {
+mongoose
+  .connect('mongodb://localhost:27017/eltrello')
+  .then(() => {
     console.log('Connected to MongoDB');
     httpServer.listen(4001, () => {
-        console.log('Server is running on port 4001');
-        })
-}
-).catch((err) => {
+      console.log('Server is running on port 4001');
+    });
+  })
+  .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
-})
+  });
 
 
 
